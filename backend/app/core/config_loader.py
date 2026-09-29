@@ -2,7 +2,7 @@ import json
 import os
 
 CONFIG_PATH = os.getenv("CONFIG_FILE_PATH", "./data/config.json")
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_CONFIG_PATH = os.path.join(BASE_DIR, "config_default.json")
 
 def load_config() -> dict:
