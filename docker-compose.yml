@@ -17,5 +17,6 @@ volumes:
   backend_data:
 
 networks:
-  external: true
-  name: ${PROXY_NETWORK_NAME:-bridge}
+  proxy-network:
+    name: ${PROXY_NETWORK_NAME}
+    external: true
