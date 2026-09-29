@@ -6,12 +6,16 @@ from app.database import engine, Base, SessionLocal
 from app.models.user import User
 import app.models.finance
 
+from app.routers import finance as finance_api
+
 from app.core.config_loader import load_config
 
 # Config Datei Laden
 config = load_config()
 defaults = config.get("defaults", {})
 
+# Routen hinzufügen
+app.include_router(finance_api.router)
 
 def init_db():
     Base.metadata.create_all(bind=engine)
