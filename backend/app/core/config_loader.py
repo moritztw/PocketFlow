@@ -9,7 +9,7 @@ def load_config() -> dict:
     # config Datei lagen oder sie aus default erstellen
     if not os.path.exists(CONFIG_PATH):
         # Default config laden
-        with open(DEFAULT_CONFIG, "r") as f:
+        with open(DEFAULT_CONFIG_PATH, "r") as f:
             default_config = json.load(f)
         
         # Default config in die config Datei schreiben
@@ -20,7 +20,7 @@ def load_config() -> dict:
             config = json.load(f)
     except json.JSONDecodeError:
         # Wenn die config Datei beschädigt ist, die default config laden
-        with open(DEFAULT_CONFIG, "r") as f:
+        with open(DEFAULT_CONFIG_PATH, "r") as f:
             config = json.load(f)
     return config
 
