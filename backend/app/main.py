@@ -6,7 +6,9 @@ from app.database import engine, Base, SessionLocal
 from app.models.user import User
 import app.models.finance
 
+#Import Router
 from app.routers import finance as finance_api
+from app.routers import transfer as transfer_api
 
 from app.core.config_loader import load_config
 
@@ -55,6 +57,7 @@ app.add_middleware(
 
 # Routen hinzufügen
 app.include_router(finance_api.router)
+app.include_router(transfer_api.router)
 
 @app.get("/")
 def read_root():
