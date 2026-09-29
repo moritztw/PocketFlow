@@ -7,7 +7,7 @@ Eine self-hosted, open source Webanwendung um Budgets, regelmäßige Ausgaben, R
 ## Backup / Import / Export
 Alle Daten können als JSON Exportiert werden und ebenso importiert werden. Das Schema ist folgendes:
 
-´´´
+```
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "PocketFlowBackup",
@@ -87,4 +87,4 @@ Alle Daten können als JSON Exportiert werden und ebenso importiert werden. Das 
   },
   "required": ["version", "username", "accounts", "budgets", "tags", "scheduled_transactions", "transactions"]
 }
-´´´
+```
