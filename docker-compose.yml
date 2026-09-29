@@ -10,6 +10,12 @@ services:
       - backend_data:/app/data
     environment:
       - DATABASE_URL=sqlite:///./data/finance.db
+    networks:
+      - proxy-network
 
 volumes:
   backend_data:
+
+networks:
+  external: true
+  name: ${PROXY_NETWORK_NAME:-bridge}
