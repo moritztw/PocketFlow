@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-form sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
 from typing import List
 
 from app.database import get_db
 from models.finance import Account, Budget, ScheduledTransaction, Transaction, Tag
-form models.user import User
+from models.user import User
 from app.schemas.finance import (
     AccountCreate,
     AccountResponse,
