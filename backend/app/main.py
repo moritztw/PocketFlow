@@ -14,9 +14,6 @@ from app.core.config_loader import load_config
 config = load_config()
 defaults = config.get("defaults", {})
 
-# Routen hinzufügen
-app.include_router(finance_api.router)
-
 def init_db():
     Base.metadata.create_all(bind=engine)
     # Prüfen, ob der Admin-Benutzer existiert, wenn nicht, erstellen
@@ -41,14 +38,14 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown code
 
-app = FastAPI(
+fast_api_app = FastAPI(
     title="PocketFlow API",
     description="BackendAPI für virutelle Unterkonten und CSV-Import",
     version="0.1.0",
     lifespan=lifespan
 )
 
-app.add_middleware(
+fast_api_app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],    # Entwicklung only
     allow_credentials=True,
@@ -56,6 +53,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+# Routen hinzufügen
+fast_api_app.include_router(finance_api.router)
+
+@fast_api_app.get("/")
 def read_root():
     return {"status": "online", "message": "PocketFlow API is running and DB initialized!"}
