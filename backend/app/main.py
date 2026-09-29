@@ -22,6 +22,7 @@ def init_db():
         if not existing_user:
             admin_user = User(
                 username=defaults.get("admin_username", "admin"),
+                email=defaults.get("admin_email", "admin@example.com"),
                 hashed_password=defaults.get("admin_password", "admin")
             )
             db.add(admin_user)

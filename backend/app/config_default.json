@@ -3,6 +3,7 @@
         "schedules_transaction_interval": "monthly",
         "budget_rollover_enabled": true,
         "admin_username": "admin",
+        "admin_email": "admin@example.com",
         "admin_password": "admin"
     }
 }
