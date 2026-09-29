@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
-from app-.database import Base
+from app.database import Base
 
 # Grundstein für spätere Mulit-User-Funktionalität schaffen um verschiedene Benutzer zu unterstützen
 
