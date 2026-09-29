@@ -1,6 +1,6 @@
 {
     "defaults": {
-        "scheduled_transaction_interval": "monthly",
+        "scheduled_transaction_frequency": "monthly",
         "budget_rollover_enabled": true,
         "admin_username": "admin",
         "admin_email": "admin@example.com",

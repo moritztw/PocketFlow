@@ -54,7 +54,8 @@ class ScheduledTransactionBase(BaseModel):
     name: str
     amount: float
     start_date: Optional[date] = None
-    interval: str = Field(default=defaults.get("schedules_transaction_interval", "monthly"))
+    end_date: Optional[date] = None
+    frequency: str = Field(default=defaults.get("schedules_transaction_frequency", "monthly"))
     budget_id: int
     account_id: int
 

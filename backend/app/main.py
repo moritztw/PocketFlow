@@ -58,4 +58,4 @@ app.include_router(finance_api.router)
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "message": "PocketFlow API is running and DB initialized!"}
+    return {"status": "online", "message": "PocketFlow API is running and DB initialized! Reload is activated!"}

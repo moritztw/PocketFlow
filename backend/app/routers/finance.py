@@ -39,3 +39,48 @@ def list_accounts(db: Session = Depends(get_db), user: User = Depends(get_curren
     return db.query(Account).filter(Account.user_id == user.id).all()
 
 # Budgets
+@router.post("/budgets", response_model=BudgetResponse, status_code=status.HTTP_201_CREATED)
+def create_budgets(budget_in: BudgetCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    db_budget = Budget(
+        name=budget_in.name,
+        budget_type=budget_in.budget_type,
+        rollover_enabled=budget_in.rollover_enabled,
+        user_id=user.id
+    )
+    db.add(db_budget)
+    db.commit()
+    db.refresh(db_budget)
+    return db_budget
+
+@router.get("/budgets", response_model=List[BudgetResponse])
+def list_budgets(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    return db.query(Budget).filter(Budget.user_id == user.id).all()
+
+# Sheduled Transaction
+@router.post("/scheduled-transactions", response_model=ScheduledTransactionResponse, status_code=status.HTTP_201_CREATED)
+def create_scheduled_transaction(st_in: ScheduledTransactionCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    # Prüfen ob Budget und Account existieren und dem User gehören
+    budget = db.query(Budget).filter(Budget.id == st_in.budget_id, Budget.user_id == user.id).first()
+    account = db.query(Account).filter(Account.id == st_in.account_id, Account.user_id == user.id).first()
+    
+    if not budget or not account:
+        raise HTTPException(status_code=400, detail="Invalid budget_id or account_id")
+
+    db_st = ScheduledTransaction(
+        name=st_in.name,
+        amount=st_in.amount,
+        start_date=st_in.start_date,
+        end_date=st_in.end_date,
+        frequency=st_in.frequency,
+        budget_id=st_in.budget_id,
+        account_id=st_in.account_id,
+        user_id=user.id
+    )
+    db.add(db_st)
+    db.commit()
+    db.refresh(db_st)
+    return db_st
+
+@router.get("/scheduled-transactions", response_model=List[ScheduledTransactionResponse])
+def list_scheduled_transactions(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    return db.query(ScheduledTransaction).filter(ScheduledTransaction.user_id == user.id).all()
