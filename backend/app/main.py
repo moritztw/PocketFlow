@@ -38,14 +38,14 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown code
 
-fast_api_app = FastAPI(
+app = FastAPI(
     title="PocketFlow API",
     description="BackendAPI für virutelle Unterkonten und CSV-Import",
     version="0.1.0",
     lifespan=lifespan
 )
 
-fast_api_app.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],    # Entwicklung only
     allow_credentials=True,
@@ -54,8 +54,8 @@ fast_api_app.add_middleware(
 )
 
 # Routen hinzufügen
-fast_api_app.include_router(finance_api.router)
+app.include_router(finance_api.router)
 
-@fast_api_app.get("/")
+@app.get("/")
 def read_root():
     return {"status": "online", "message": "PocketFlow API is running and DB initialized!"}
