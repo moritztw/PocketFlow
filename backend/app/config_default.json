@@ -1,0 +1,6 @@
+{
+    "defaults": {
+        "schedules_transaction_interval": "monthly",
+        "budget_rollover_enabled": true
+    }
+}

@@ -2,6 +2,11 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, Foreig
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.database import Base
+from app.core.config_loader import load_config
+
+# Config Datei Laden
+config = load_config()
+defaults = config.get("defaults", {})
 
 # Verknpüfungstabelle für Tags (Many-to-Many)
 
@@ -57,7 +62,7 @@ class Budget(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     name = Column(String, nullable=False)
     budget_type = Column(String, nullable=False) # fix or flex
-    rollover_enabled = Column(Boolean, default=True) # Restgeld in den nächsten Monat mitnehmen. 
+    rollover_enabled = Column(Boolean, default=defaults.get("rollover_enabled", True)) # Restgeld in den nächsten Monat mitnehmen. 
     # Default in Config setzen?
 
     scheduled_transactions = relationship("ScheduledTransaction", back_populates="budget")
@@ -80,7 +85,7 @@ class ScheduledTransaction(Base):
     amount = Column(Float, nullable=False)
     start_date = Column(DateTime, default=datetime.utcnow)
     end_date = Column(DateTime, nullable=True)
-    frequency = Column(String, default="monthly") # daily, weekly, monthly, yearly
+    frequency = Column(String, default=defaults.get("frequency", "monthly")) # daily, weekly, monthly, yearly
 
     account = relationship("Account", back_populates="scheduled_transactions")
     budget = relationship("Budget", back_populates="scheduled_transactions")
