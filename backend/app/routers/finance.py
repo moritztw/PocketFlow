@@ -27,7 +27,7 @@ def get_current_user(db: Session = Depends(get_db)) -> User:
 
 # Accounts
 @router.post("/accounts", response_model=AccountResponse, status_code=status.HTTP_201_CREATED)
-def create_account(account_in: AccountCreate, db: Session = Depends(get_db), User = Depends(get_current_user)):
+def create_account(account_in: AccountCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     db_account = Account(name=account_in.name, user_id=user.id)
     db.add(db_account)
     db.commit()
