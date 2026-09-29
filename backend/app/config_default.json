@@ -1,6 +1,8 @@
 {
     "defaults": {
         "schedules_transaction_interval": "monthly",
-        "budget_rollover_enabled": true
+        "budget_rollover_enabled": true,
+        "admin_username": "admin",
+        "admin_password": "admin"
     }
 }
