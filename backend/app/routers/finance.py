@@ -35,7 +35,7 @@ def create_account(account_in: AccountCreate, db: Session = Depends(get_db), Use
     return db_account
 
 @router.get("/accounts", response_model=List[AccountResponse])
-def list_accounts(db: Session = Depens(get_db), user: User = Depends(get_current_user)):
+def list_accounts(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     return db.query(Account).filter(Account.user_id == user.id).all()
 
 # Budgets
