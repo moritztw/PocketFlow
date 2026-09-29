@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.database import get_db
-from models.finance import Account, Budget, ScheduledTransaction, Transaction, Tag
-from models.user import User
+from app.models.finance import Account, Budget, ScheduledTransaction, Transaction, Tag
+from app.models.user import User
 from app.schemas.finance import (
     AccountCreate,
     AccountResponse,
