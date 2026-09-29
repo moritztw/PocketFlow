@@ -2,7 +2,9 @@
 Eine self-hosted, open source Webanwendung um Budgets, regelmäßige Ausgaben, Rücklagen und verfügbares Geld zu tracken.
 
 ## Features
-- [ ] Default Optionen aus dem Quellcode in config Datei auslagern (inkl. Config Datei Loader)
+- [ ] CSV Import von Bankdaten als Transactions
+- [ ] Multi User pro Verwaltung (nicht länger 1 User = 1 Datensatz)
+- [ ] Option einzelnen Scheduled_Transactions verschiedene Personen zuzuordnen, die es zahlen müssen 
 
 ## Backup / Import / Export
 Alle Daten können als JSON Exportiert werden und ebenso importiert werden. Das Schema ist folgendes:

@@ -14,6 +14,10 @@ class TagBase(BaseModel):
 class TagCreate(TagBase):
     pass
 
+class TagUpdate(BaseModel):
+    name: Optional[str] = None
+    color: Optional[str] = None
+
 class TagResponse(TagBase):
     id: int
     user_id: int
@@ -26,6 +30,9 @@ class AccountBase(BaseModel):
 
 class AccountCreate(AccountBase):
     pass
+
+class AccountUpdate(BaseModel):
+    name: Optional[str] = None
 
 class AccountResponse(AccountBase):
     id: int
@@ -41,6 +48,11 @@ class BudgetBase(BaseModel):
 
 class BudgetCreate(BudgetBase):
     pass
+
+class BudgetUpdate(BaseModel):
+    name: Optional[str] = None
+    budget_type: Optional[str] = None
+    rollover_enabled: Optional[bool] = None
 
 class BudgetResponse(BudgetBase):
     id: int
@@ -62,8 +74,44 @@ class ScheduledTransactionBase(BaseModel):
 class ScheduledTransactionCreate(ScheduledTransactionBase):
     pass
 
+class ScheduledTransactionUpdate(BaseModel):
+    name: Optional[str] = None
+    amount: Optional[float] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    frequency: Optional[str] = None
+    budget_id: Optional[int] = None
+    account_id: Optional[int] = None
+
 class ScheduledTransactionResponse(ScheduledTransactionBase):
     id: int
     user_id: int
     class Config:
         from_attributes = True
+
+# Transactions
+class TransactionBase(BaseModel):
+    date: Optional[date] = None
+    amount: float
+    purpose: Optional[str] = None
+    counterpart: Optional[str] = None
+    account_id: int
+    budget_id: Optional[int] = None
+
+class TransactionCreate(TransactionBase):
+    pass
+
+class TransactionUpdate(BaseModel):
+    date: Optional[date] = None
+    amount: Optional[float] = None
+    purpose: Optional[str] = None
+    counterpart: Optional[str] = None
+    account_id: Optional[int] = None
+    budget_id: Optional[int] = None
+
+class TransactionResponse(TransactionBase):
+    id: int
+    user_id: int
+
+    class Config:
+        from_attributes = True  
