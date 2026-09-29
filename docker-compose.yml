@@ -1,1 +1,17 @@
+version: '3.8'
 
+services:
+  backend:
+    build: ./backend
+    container_name: finanz_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app  
+      - backend_data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/finance.db
+
+volumes:
+  backend_data:
