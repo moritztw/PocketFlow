@@ -2,13 +2,14 @@ import json
 import os
 
 CONFIG_PATH = os.getenv("CONFIG_FILE_PATH", "./data/config.json")
-#DEFAULT_CONFIG = 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_CONFIG_PATH = os.path.join(BASE_DIR, "config_default.json")
 
 def load_config() -> dict:
     # config Datei lagen oder sie aus default erstellen
     if not os.path.exists(CONFIG_PATH):
         # Default config laden
-        with open("config_default.json", "r") as f:
+        with open(DEFAULT_CONFIG, "r") as f:
             default_config = json.load(f)
         
         # Default config in die config Datei schreiben
@@ -19,7 +20,7 @@ def load_config() -> dict:
             config = json.load(f)
     except json.JSONDecodeError:
         # Wenn die config Datei beschädigt ist, die default config laden
-        with open("config_default.json", "r") as f:
+        with open(DEFAULT_CONFIG, "r") as f:
             config = json.load(f)
     return config
 
