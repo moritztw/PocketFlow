@@ -1,7 +1,7 @@
 services:
   backend:
     build: ./backend
-    container_name: finanz_backend
+    container_name: pocketflow_backend
     restart: unless-stopped
     ports:
       - "8000:8000"
