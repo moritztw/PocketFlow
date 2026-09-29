@@ -85,7 +85,7 @@ class ScheduledTransaction(Base):
     amount = Column(Float, nullable=False)
     start_date = Column(DateTime, default=datetime.utcnow)
     end_date = Column(DateTime, nullable=True)
-    frequency = Column(String, default=defaults.get("frequency", "monthly")) # daily, weekly, monthly, yearly
+    frequency = Column(String, default=defaults.get("scheduled_transaction_frequency    ", "monthly")) # daily, weekly, monthly, yearly
 
     account = relationship("Account", back_populates="scheduled_transactions")
     budget = relationship("Budget", back_populates="scheduled_transactions")
