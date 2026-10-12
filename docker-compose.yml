@@ -13,6 +13,21 @@ services:
     networks:
       - proxy-network
 
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL}
+    container_name: pocketflow_frontend
+    ports:
+      - "8001:80"  # Web-Oberfläche ist unter http://localhost:3000 erreichbar
+    depends_on:
+      - backend
+    networks:
+      - proxy-network
+    restart: unless-stopped
+
 volumes:
   backend_data:
 

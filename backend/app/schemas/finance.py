@@ -102,7 +102,8 @@ class TransactionCreate(TransactionBase):
     pass
 
 class TransactionUpdate(BaseModel):
-    date: Optional[date] = None
+    booking_date: Optional[date] = None
+    value_date: Optional[date] = None
     amount: Optional[float] = None
     purpose: Optional[str] = None
     counterpart: Optional[str] = None

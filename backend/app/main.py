@@ -10,6 +10,7 @@ import app.models.finance
 from app.routers import finance as finance_api
 from app.routers import transfer as transfer_api
 from app.routers import admin as admin_api
+from app.routers import dashboard as dashboard_api
 
 from app.core.config_loader import load_config
 
@@ -60,6 +61,7 @@ app.add_middleware(
 app.include_router(finance_api.router)
 app.include_router(transfer_api.router)
 app.include_router(admin_api.router)
+app.include_router(dashboard_api.router)
 
 @app.get("/")
 def read_root():

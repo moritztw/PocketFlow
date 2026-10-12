@@ -223,7 +223,8 @@ def create_transaction(
     user: User = Depends(get_current_user)
 ):
     db_transaction = Transaction(
-        date=transaction_in.date,
+        value_date=transaction_in.value_date,
+        booking_date=transaction_in.booking_date,
         amount=transaction_in.amount,
         purpose=transaction_in.purpose,
         counterpart=transaction_in.counterpart,
